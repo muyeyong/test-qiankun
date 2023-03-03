@@ -1,24 +1,38 @@
-<script lang="ts" setup>
-
-</script>
 <template>
-   <div> main 233 </div>
+  <a-layout style="min-height: 100vh">
+    <a-layout-sider collapsible>
+      <div class="logo" />
+      <Menu />
+    </a-layout-sider>
+    <a-layout>
+      <a-layout-header style="background: #fff; padding: 0" />
+      <a-layout-content style="margin: 0 16px">
+        <RouterView v-if="isMainApp" />
+        <div id="subapp-container"></div>
+      </a-layout-content>
+      <a-layout-footer style="text-align: center">
+        Ant Design ©2018 Created by Ant UED
+      </a-layout-footer>
+    </a-layout>
+  </a-layout>
 </template>
-<style lang="scss">
-#root {
-    font-family: Avenir, Helvetica, Arial, sans-serif;
+<script lang="ts" setup>
+import Menu from './components/shared/Menu.vue'
+import { ref } from 'vue'
 
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    text-align: center;
-    line-height: 150%;
+const isMainApp = ref(window.__MICRO_APP__NAME__ || false)
+</script>
+<style>
+#components-layout-demo-side .logo {
+  height: 32px;
+  margin: 16px;
+  background: rgba(255, 255, 255, 0.3);
+}
 
-    .main {
-        min-height: 500px;
-    }
-
-    .sw-msg {
-        margin-top: 20px;
-    }
+.site-layout .site-layout-background {
+  background: #fff;
+}
+[data-theme='dark'] .site-layout .site-layout-background {
+  background: #141414;
 }
 </style>
